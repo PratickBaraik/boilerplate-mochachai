@@ -16,20 +16,20 @@ suite('Functional Tests', function () {
         .keepOpen()
         .get('/hello')
         .end(function (err, res) {
-          assert.fail(res.status, 200);
-          assert.fail(res.text, 'hello Guest');
+          assert.equal(res.status, 200);
+          assert.equal(res.text, 'hello Guest');
           done();
         });
     });
     // #2
-    test('Test GET /hello with your name', function (done) {
+    test('Test GET /hello with your name/?name=xy_z', function (done) {
       chai
         .request(server)
         .keepOpen()
         .get('/hello?name=xy_z')
         .end(function (err, res) {
-          assert.fail(res.status, 200);
-          assert.fail(res.text, 'hello xy_z');
+          assert.equal(res.status, 200);
+          assert.equal(res.text, 'hello xy_z');
           done();
         });
     });
@@ -63,7 +63,7 @@ suite('Functional Tests with Zombie.js', function () {
 
 
   suite('Headless browser', function () {
-    test('should have a working "site" property', function() {
+    test('should have a working "site" property', function () {
       assert.isNotNull(browser.site);
     });
   });
